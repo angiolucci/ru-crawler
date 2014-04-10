@@ -1,13 +1,14 @@
 import crawler.data.*;
-import crawler.model.Meal;
-import crawler.view.MealViewer;
+import crawler.model.*;
+import crawler.view.*;
 
 public class Main {
 	public static void main(String[] args) {
-		DataRetriever dr = new DataRetriever("http://www.sorocaba.ufscar.br/ufscar/?cardapio");
-		Parser parser = new Parser(dr.retrieve());
-		Meal[] meals = parser.parse();
+		DataRetriever dr = new DataRetriever(
+				"http://www.sorocaba.ufscar.br/ufscar/?cardapio");
+		Meal[] meals = dr.retrieve();
 		MealViewer mv = new MealViewer(meals);
-		mv.print();		
+		mv.print();
+
 	}
 }

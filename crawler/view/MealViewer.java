@@ -24,17 +24,20 @@ public class MealViewer {
 						+ meals[i].getStrData());
 
 				if (meals[i].getPrinc()
-						.equalsIgnoreCase(meals[i].getVegPrinc()))
+						.equalsIgnoreCase(meals[i].getVegPrinc())) {
 					System.out.println("Principal: " + meals[i].getPrinc());
-				else
+				} else {
 					System.out.println("Principal: " + meals[i].getPrinc()
 							+ " / " + meals[i].getVegPrinc());
+				}
+				
 				if (meals[i].getGuarn()
-						.equalsIgnoreCase(meals[i].getVegGuarn()))
+						.equalsIgnoreCase(meals[i].getVegGuarn())) {
 					System.out.println("Guarnição: " + meals[i].getGuarn());
-				else
+				} else {
 					System.out.println("Guarnição: " + meals[i].getGuarn()
 							+ " / " + meals[i].getVegGuarn());
+				}
 				
 				System.out.println("Salada: " + meals[i].getSalad());
 				System.out.println("Sobremesa: " + meals[i].getSobrm());

@@ -13,10 +13,6 @@ public class Parser {
 			this.htmlContent = content;
 	}
 
-	public Parser() {
-		this.htmlContent = new String();
-	}
-
 	public void setHtmlContent(String content) {
 		if (content != null)
 			this.htmlContent = content;
