@@ -114,6 +114,8 @@ public class DataRetriever {
 	}
 
 	private boolean writeCache(String htmlContent, Date valDate) {
+		boolean writeStatus = false;
+		
 		CacheFile cf = new CacheFile();
 		cf.setHtmlUrl(this.dataSource);
 		cf.setHtmlContent(htmlContent);
@@ -125,13 +127,15 @@ public class DataRetriever {
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(cf);
 			oos.close();
+			writeStatus = true;
 
 		} catch (Exception ex) {
 			System.out.println("WARNING: Falhou ao escrever cache:");
 			System.out.println(ex.getMessage());
+			writeStatus = false;
 		}
 
-		return false;
+		return writeStatus;
 	}
 
 }

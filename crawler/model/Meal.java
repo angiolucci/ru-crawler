@@ -30,7 +30,7 @@ public class Meal {
 		this.vegPrinc = new String();
 		this.vegGuarn = new String();
 		
-		this.dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+		this.dateFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	}
 
 	public Date getData() {
@@ -97,7 +97,10 @@ public class Meal {
 	}
 	
 	public String getStrData(){
-		return dateFormatter.format(this.data);
+		//return dateFormatter.format(this.data);
+		SimpleDateFormat dFormatter = new SimpleDateFormat("dd/MM/yyyy");
+		return dFormatter.format(this.data);
+		
 	}
 	
 	public String getDayOfWeek(){
@@ -106,8 +109,9 @@ public class Meal {
 	}
 	
 	public void setData(String strDate){
+		String dateTime = new String(strDate + " " + "19:00:00");
 		try {
-			this.data = this.dateFormatter.parse(strDate);
+			this.data = this.dateFormatter.parse(dateTime);
 		} catch (ParseException e) {
 			System.out.println("WARNING: Erro na conversão de data");
 		}	
