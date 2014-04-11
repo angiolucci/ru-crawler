@@ -23,12 +23,15 @@ public class DataRetriever {
 	}
 
 	public Meal[] retrieve() {
+		boolean writeOnCache = false;
 		String fullHtml = null;
 		Meal[] meals = null;
 
 		fullHtml = checkCache();
-		if (fullHtml == null)
+		if (fullHtml == null) {
 			fullHtml = checkNet();
+			writeOnCache = true;
+		}
 
 		Parser parser = new Parser(fullHtml);
 		try {
@@ -39,7 +42,8 @@ public class DataRetriever {
 			System.exit(-1);
 		}
 
-		writeCache(fullHtml, meals[meals.length - 1].getData());
+		if (writeOnCache)
+			writeCache(parser.getParsedHtml(), meals[meals.length - 1].getData());
 
 		return meals;
 	}

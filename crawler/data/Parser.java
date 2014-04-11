@@ -7,10 +7,17 @@ import org.jsoup.select.Elements;
 
 public class Parser {
 	private String htmlContent;
+	private String parsedHtml;
 
 	public Parser(String content) {
 		if (content != null)
 			this.htmlContent = content;
+		
+		this.parsedHtml = null;
+	}
+	
+	public String getParsedHtml(){
+		return this.parsedHtml;
 	}
 
 	public void setHtmlContent(String content) {
@@ -27,8 +34,11 @@ public class Parser {
 		 */
 		Meal[] meals = new Meal[10];
 		
-		Elements items = doc.getElementsByTag("Map");		
-		doc = Jsoup.parse(items.html());
+		Elements items = doc.getElementsByTag("Map");
+		
+		this.parsedHtml = items.toString();
+		doc = Jsoup.parse(this.parsedHtml);
+		
 		items = doc.getElementsByTag("td");
 		
 		for (int i = 0; i < 10; i++) {
