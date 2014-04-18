@@ -50,7 +50,7 @@ public class StringHandler {
 				else if (sb.toString().equals("eacute"))
 					output.append("é");
 				else if (sb.toString().equals("Ecirc"))
-					output.append("ê");
+					output.append("Ê");
 				else if (sb.toString().equals("ecirc"))
 					output.append("ê");
 				else if (sb.toString().equals("Egrave"))

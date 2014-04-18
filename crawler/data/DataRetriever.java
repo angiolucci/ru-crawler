@@ -17,6 +17,7 @@ import crawler.model.Meal;
 
 public class DataRetriever {
 	private String dataSource;
+	private String cacheFileName = new String("cache.dat");
 
 	public DataRetriever(String url) {
 		this.dataSource = url;
@@ -36,14 +37,15 @@ public class DataRetriever {
 		Parser parser = new Parser(fullHtml);
 		try {
 			meals = parser.parse();
-		} catch (Exception ex){
+		} catch (Exception ex) {
 			System.out.println("FATAL: Falha ao realizar parsing:");
 			ex.printStackTrace();
 			System.exit(-1);
 		}
 
 		if (writeOnCache)
-			writeCache(parser.getParsedHtml(), meals[meals.length - 1].getData());
+			writeCache(parser.getParsedHtml(),
+					meals[meals.length - 1].getData());
 
 		return meals;
 	}
@@ -90,7 +92,7 @@ public class DataRetriever {
 
 		try {
 
-			FileInputStream fin = new FileInputStream("cache.dat");
+			FileInputStream fin = new FileInputStream(this.cacheFileName);
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			readenCache = (CacheFile) ois.readObject();
 			ois.close();
@@ -119,7 +121,7 @@ public class DataRetriever {
 
 	private boolean writeCache(String htmlContent, Date valDate) {
 		boolean writeStatus = false;
-		
+
 		CacheFile cf = new CacheFile();
 		cf.setHtmlUrl(this.dataSource);
 		cf.setHtmlContent(htmlContent);
@@ -127,7 +129,7 @@ public class DataRetriever {
 
 		try {
 
-			FileOutputStream fout = new FileOutputStream("cache.dat");
+			FileOutputStream fout = new FileOutputStream(this.cacheFileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(cf);
 			oos.close();

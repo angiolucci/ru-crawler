@@ -7,17 +7,17 @@ import org.jsoup.select.Elements;
 
 public class Parser {
 	private String htmlContent;
-	private String parsedHtml;
+	private String preParsedHtml;
 
 	public Parser(String content) {
 		if (content != null)
 			this.htmlContent = content;
 		
-		this.parsedHtml = null;
+		this.preParsedHtml = null;
 	}
 	
 	public String getParsedHtml(){
-		return this.parsedHtml;
+		return this.preParsedHtml;
 	}
 
 	public void setHtmlContent(String content) {
@@ -33,11 +33,9 @@ public class Parser {
 		 * meals[5,6,...,9] --> Jantar
 		 */
 		Meal[] meals = new Meal[10];
-		
 		Elements items = doc.getElementsByTag("Map");
-		
-		this.parsedHtml = items.toString();
-		doc = Jsoup.parse(this.parsedHtml);
+		this.preParsedHtml = items.toString();
+		doc = Jsoup.parse(this.preParsedHtml);
 		
 		items = doc.getElementsByTag("td");
 		
@@ -102,18 +100,16 @@ public class Parser {
 				meals[i].setVegGuarn(tmpElm.get(i*7 + 118).html());
 			}
 		}
-		Meal[] orderedMeals = new Meal[10];
 		
-		orderedMeals[0] = meals[0];
-		orderedMeals[1] = meals[5];
-		orderedMeals[2] = meals[1];
-		orderedMeals[3] = meals[6];
-		orderedMeals[4] = meals[2];
-		orderedMeals[5] = meals[7];
-		orderedMeals[6] = meals[3];
-		orderedMeals[7] = meals[8];
-		orderedMeals[8] = meals[4];
-		orderedMeals[9] = meals[9];
+		Meal[] orderedMeals = new Meal[10];
+		int j = 0, k = 5;
+		for (int i = 0; i < 10; i++){
+			if (i % 2 == 0)
+				orderedMeals[i] = meals[j++];
+			else
+				orderedMeals[i] = meals[k++];
+		}
+
 		
 		return orderedMeals;		
 	}

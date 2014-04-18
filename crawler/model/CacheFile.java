@@ -1,10 +1,13 @@
 package crawler.model;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CacheFile implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 865431385795396110L;
 	private String htmlUrl;
 	private Date dateVal;
 	private String htmlContent;
