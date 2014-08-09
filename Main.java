@@ -1,6 +1,6 @@
-import crawler.data.*;
-import crawler.model.*;
-import crawler.view.*;
+import crawler.data.DataRetriever;
+import crawler.model.Meal;
+import crawler.view.MealViewer;
 
 public class Main {
 	public static void main(String[] args) {
@@ -9,6 +9,5 @@ public class Main {
 		Meal[] meals = dr.retrieve();
 		MealViewer mv = new MealViewer(meals);
 		mv.print();
-
 	}
 }
