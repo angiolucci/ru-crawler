@@ -13,15 +13,15 @@ public class MealViewer {
 	public void print() {
 		if (this.meals != null)
 			for (int i = 0; i < this.meals.length; i++) {
-				if (i % 2 == 0)
-					System.out
-							.println("=================== ALMOÇO ===================");
-				else
-					System.out
-							.println("=================== JANTAR ===================");
 
-				System.out.println("Data: " + meals[i].getDayOfWeek() + ", "
-						+ meals[i].getStrData());
+				if (i % 2 == 0) {
+				    System.out
+							.println("============== " + meals[i].getStrData() + 
+              " ==============");
+            System.out.println("\t\t\t[ALMOÇO]");
+        } else {
+            System.out.println("\t\t\t[JANTAR]");
+        }
 
 				if (meals[i].getPrinc()
 						.equalsIgnoreCase(meals[i].getVegPrinc())) {
