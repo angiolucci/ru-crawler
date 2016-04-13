@@ -16,8 +16,8 @@ public class MealViewer {
 
 				if (i % 2 == 0) {
 				    System.out
-							.println("============== " + meals[i].getStrData() + 
-              " ==============");
+							.println("================ " + meals[i].getDayOfWeek() + ", " +
+              meals[i].getStrData() + " ================");
             System.out.println("\t\t\t[ALMOÇO]");
         } else {
             System.out.println("\t\t\t[JANTAR]");
